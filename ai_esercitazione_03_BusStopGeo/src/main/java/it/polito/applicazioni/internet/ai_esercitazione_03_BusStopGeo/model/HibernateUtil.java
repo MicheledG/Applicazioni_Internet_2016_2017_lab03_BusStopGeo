@@ -41,6 +41,7 @@ public class HibernateUtil {
 				.build();
 			Metadata metadata= new MetadataSources(serviceRegistry)
 				.addAnnotatedClass(BusStop.class)//for all classes
+				.addAnnotatedClass(BusStopGeo.class)
 				.getMetadataBuilder()
 				.applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
 				.build();	
@@ -49,7 +50,7 @@ public class HibernateUtil {
         }
         catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed
-            System.err.println("Initial SessionFactory creation failed." + ex);
+            System.err.println("Initial SessionFactory creation failed: " + ex);
             throw new ExceptionInInitializerError(ex);
         }
     }
