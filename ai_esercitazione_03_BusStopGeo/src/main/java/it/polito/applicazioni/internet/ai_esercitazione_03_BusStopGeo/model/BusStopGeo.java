@@ -3,10 +3,11 @@ package it.polito.applicazioni.internet.ai_esercitazione_03_BusStopGeo.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.ParseException;
-import com.vividsolutions.jts.io.WKTReader;
-
+import org.geolatte.geom.G2D;
+import org.geolatte.geom.Geometries;
+import org.geolatte.geom.Point;
+import org.geolatte.geom.crs.CoordinateReferenceSystem;
+import org.geolatte.geom.crs.CrsRegistry;
 
 @Entity
 public class BusStopGeo {
@@ -14,19 +15,17 @@ public class BusStopGeo {
 	@Id
 	private String id;
 	private String name;
-	private Geometry position;
+	private Point<G2D> position;
 	
 	public BusStopGeo(BusStop busStop){
-		WKTReader pointReader = new WKTReader();
-		String textLocation = "POINT("+busStop.getLng()+" "+busStop.getLat()+")";
-		try {
-			position = pointReader.read(textLocation);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		id = busStop.getId();
 		name = busStop.getName();
+		
+		G2D g2dPosition = new G2D(busStop.getLng(), busStop.getLat());
+		CoordinateReferenceSystem<G2D> crs = CrsRegistry.getGeographicCoordinateReferenceSystemForEPSG(4326);
+		position = Geometries.mkPoint(g2dPosition, crs);
+		
 	}
 	
 	public String getId() {
@@ -41,12 +40,13 @@ public class BusStopGeo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Geometry getLocation() {
+
+	public Point<G2D> getPosition() {
 		return position;
 	}
-	public void setLocation(Geometry position) {
+
+	public void setPosition(Point<G2D> position) {
 		this.position = position;
 	}
-	
-	
+
 }
