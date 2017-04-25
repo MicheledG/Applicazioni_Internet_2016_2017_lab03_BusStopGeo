@@ -1,4 +1,4 @@
-package it.polito.applicazioni.internet.ai_esercitazione_03_BusStopGeo.model;
+package it.polito.ai.es03.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,13 +14,11 @@ public class BusStopGeo {
 	
 	@Id
 	private String id;
-	private String name;
 	private Point<G2D> position;
 	
 	public BusStopGeo(BusStop busStop){
 		
 		id = busStop.getId();
-		name = busStop.getName();
 		
 		G2D g2dPosition = new G2D(busStop.getLng(), busStop.getLat());
 		CoordinateReferenceSystem<G2D> crs = CrsRegistry.getGeographicCoordinateReferenceSystemForEPSG(4326);
@@ -34,13 +32,6 @@ public class BusStopGeo {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Point<G2D> getPosition() {
 		return position;
 	}

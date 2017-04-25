@@ -1,4 +1,4 @@
-package it.polito.applicazioni.internet.ai_esercitazione_03_BusStopGeo;
+package it.polito.ai.es03.application;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import it.polito.applicazioni.internet.ai_esercitazione_03_BusStopGeo.model.BusStop;
-import it.polito.applicazioni.internet.ai_esercitazione_03_BusStopGeo.model.BusStopGeo;
-import it.polito.applicazioni.internet.ai_esercitazione_03_BusStopGeo.model.HibernateUtil;
+import it.polito.ai.es03.model.BusStop;
+import it.polito.ai.es03.model.BusStopGeo;
+import it.polito.ai.es03.model.HibernateUtil;
 
 /**
  * Hello world!

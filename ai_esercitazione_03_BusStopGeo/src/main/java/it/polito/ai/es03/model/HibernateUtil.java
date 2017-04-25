@@ -1,4 +1,4 @@
-package it.polito.applicazioni.internet.ai_esercitazione_03_BusStopGeo.model;
+package it.polito.ai.es03.model;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
